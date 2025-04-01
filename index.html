@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Link do WhatsApp</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+        }
+        a {
+            display: block;
+            margin-top: 10px;
+            padding: 10px;
+            background: green;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Gerador de Link do WhatsApp</h2>
+        <input type="text" id="telefone" placeholder="Número com DDD (ex: 5511999999999)">
+        <input type="text" id="mensagem" placeholder="Mensagem opcional">
+        <button onclick="gerarLink()">Gerar Link</button>
+        <a id="linkWhatsapp" href="#" target="_blank" style="display: none;">Abrir no WhatsApp</a>
+    </div>
+
+    <script>
+        function gerarLink() {
+            let telefone = document.getElementById("telefone").value.trim();
+            let mensagem = document.getElementById("mensagem").value.trim();
+            let link = `https://wa.me/${telefone}`;
+            
+            if (mensagem) {
+                let mensagemFormatada = encodeURIComponent(mensagem);
+                link += `?text=${mensagemFormatada}`;
+            }
+            
+            let linkWhatsapp = document.getElementById("linkWhatsapp");
+            linkWhatsapp.href = link;
+            linkWhatsapp.style.display = "block";
+        }
+    </script>
+</body>
+</html>
